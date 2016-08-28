@@ -116,7 +116,8 @@ function train {
 	  --data_path=data/data \
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
-	  --train_dir=textsum/log_root/train
+	  --train_dir=textsum/log_root/train \
+	  --max_run_steps=10000
 }
 
 # evaluation
