@@ -53,12 +53,12 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   input_gen = self._TextGenerator(data.ExampleGen(self._data_path))
   ```
 
-- train
+- test
 ```shell
 $ ls
-README.md  WORKSPACE  bazel-bin  bazel-genfiles  bazel-out  bazel-test_textsum	bazel-testlogs	check_data.py  data  textsum  train.sh
+README.md  WORKSPACE  bazel-bin  bazel-genfiles  bazel-out  bazel-test_textsum	bazel-testlogs	check_data.py  data  textsum  test.sh
 
-$ ./train.sh -v -v
+$ ./test.sh -v -v
 ...
 running_avg_loss: 1.002997
 running_avg_loss: 1.384698

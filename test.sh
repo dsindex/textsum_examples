@@ -131,8 +131,23 @@ function evaluate {
 	  --eval_dir=textsum/log_root/eval
 }
 
+# decode
+function decode {
+	bazel-bin/textsum/seq2seq_attention \
+	  --mode=decode \
+	  --article_key=article \
+	  --abstract_key=abstract \
+	  --data_path=data/data \
+	  --vocab_path=data/vocab \
+	  --log_root=textsum/log_root \
+	  --decode_dir=textsum/log_root/decode \
+	  --beam_size=8
+
+}
+
 train
 evaluate
+decode
 
 close_fd
 
