@@ -2,7 +2,7 @@
 
 - description
   - test code for textsum
-  - textsum
+  - [textsum](https://github.com/tensorflow/models/tree/master/textsum)
     - [Text summarization with TensorFlow](https://research.googleblog.com/2016/08/text-summarization-with-tensorflow.html)
 	- [English Gigaword](https://catalog.ldc.upenn.edu/LDC2012T21)
     - reference paper [A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/abs/1509.00685)
@@ -52,6 +52,8 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   ```python
   input_gen = self._TextGenerator(data.ExampleGen(self._data_path))
   ```
+  - how to create own training data?
+    - see : http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
 
 - test
 ```shell
