@@ -53,10 +53,11 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   input_gen = self._TextGenerator(data.ExampleGen(self._data_path))
   ```
   - how to create own training data?
-    - see : http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
+    - see http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
 	```shell
     $ python generate_data.py --input_dir=sample --data_path=test-0
 	$ python check_data.py --data_path=test-0
+    # something weired! see https://github.com/tensorflow/models/issues/357 
 	```
 
 - test
