@@ -107,43 +107,49 @@ if (( VERBOSE_MODE > 1 )); then
 	revert_calmness
 fi
 
+cp -rf ${CDIR}/textsum/data ${CDIR}
+cp -rf ${CDIR}/data/data ${CDIR}/data/training-0
+cp -rf ${CDIR}/data/data ${CDIR}/data/validation-0
+cp -rf ${CDIR}/data/data ${CDIR}/data/test-0
+
 # training
 function train {
-	bazel-bin/textsum/seq2seq_attention \
+	${CDIR}/bazel-bin/textsum/seq2seq_attention \
 	  --mode=train \
 	  --article_key=article \
 	  --abstract_key=abstract \
-	  --data_path=data/data \
+	  --data_path=data/training-* \
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
 	  --train_dir=textsum/log_root/train \
-	  --max_run_steps=10000
+	  --max_run_steps=100
 }
 
 # evaluation
 function evaluate {
-	bazel-bin/textsum/seq2seq_attention \
+	${CDIR}/bazel-bin/textsum/seq2seq_attention \
 	  --mode=eval \
 	  --article_key=article \
 	  --abstract_key=abstract \
-	  --data_path=data/data \
+	  --data_path=data/validation-* \
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
-	  --eval_dir=textsum/log_root/eval
+	  --eval_dir=textsum/log_root/eval \
+	  --max_run_steps=100
 }
 
 # decode
 function decode {
-	bazel-bin/textsum/seq2seq_attention \
+	${CDIR}/bazel-bin/textsum/seq2seq_attention \
 	  --mode=decode \
 	  --article_key=article \
 	  --abstract_key=abstract \
-	  --data_path=data/data \
+	  --data_path=data/test-* \
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
 	  --decode_dir=textsum/log_root/decode \
-	  --beam_size=8
-
+	  --beam_size=8 \
+	  --max_run_steps=100
 }
 
 train

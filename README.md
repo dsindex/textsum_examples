@@ -14,7 +14,7 @@
 - data format
   - how does data file look like?
   ```shell
-  $ python check_data.py
+  $ python check_data.py --data_path=data/data
 
   features {
     feature {
@@ -54,12 +54,13 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   ```
   - how to create own training data?
     - see : http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
+	```shell
+    $ python generate_data.py --input_dir=sample --data_path=test-0
+	$ python check_data.py --data_path=test-0
+	```
 
 - test
 ```shell
-$ ls
-README.md  WORKSPACE  bazel-bin  bazel-genfiles  bazel-out  bazel-test_textsum	bazel-testlogs	check_data.py  data  textsum  test.sh
-
 $ ./test.sh -v -v
 ...
 running_avg_loss: 1.002997
