@@ -5,12 +5,15 @@ import os
 import glob
 import random
 import struct
-
 import tensorflow as tf
 from tensorflow.core.example import example_pb2
+import json
+from google.protobuf import json_format
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('data_path', 'data/data', 'Path expression to tf.Example.')
+tf.app.flags.DEFINE_string('crc', '0', 'crc size')
+FLAGS.crc = int(FLAGS.crc)
 
 def ExampleGen(recordio_path, num_epochs=None):
   """Generates tf.Examples from path of recordio files.
@@ -35,15 +38,16 @@ def ExampleGen(recordio_path, num_epochs=None):
       reader = open(f, 'rb')
       while True:
         len_bytes = reader.read(8)
-        #skip_byptes = reader.read(4) # skip 4 bytes
+        skip_bytes = reader.read(FLAGS.crc) # skip crc bytes
         if not len_bytes: break
         str_len = struct.unpack('q', len_bytes)[0]
         example_str = struct.unpack('%ds' % str_len, reader.read(str_len))[0]
-        print example_str
+        skip_bytes = reader.read(FLAGS.crc) # skip crc bytes
         yield example_pb2.Example.FromString(example_str)
 
     epoch += 1
 
 for ret in ExampleGen(FLAGS.data_path, num_epochs=1) :
   print ret
-
+  ret_json = json_format.MessageToJson(ret)
+  print ret_json

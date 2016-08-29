@@ -9,7 +9,7 @@
       - an implementation using tensorflow, [neural-summary-tensorflow](https://github.com/carpedm20/neural-summary-tensorflow)
   
 - pre-requesite and setting
-  - see https://github.com/tensorflow/models/tree/master/textsum
+  - follow instructions in https://github.com/tensorflow/models/tree/master/textsum
 
 - data format
   - how does data file look like?
@@ -53,12 +53,12 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   input_gen = self._TextGenerator(data.ExampleGen(self._data_path))
   ```
   - how to create own training data?
-    - see http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
-	```shell
-    $ python generate_data.py --input_dir=sample --data_path=test-0
-	$ python check_data.py --data_path=test-0
-    # something weired! see https://github.com/tensorflow/models/issues/357 
-	```
+  ```shell
+  $ python generate_data.py --input_dir=sample --data_path=sample-0
+  $ python check_data.py --data_path=sample-0 --crc=4
+  # refer to http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
+  #          https://github.com/tensorflow/models/issues/357 
+  ```
 
 - test
 ```shell
