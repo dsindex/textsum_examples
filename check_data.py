@@ -48,6 +48,7 @@ def ExampleGen(recordio_path, num_epochs=None):
     epoch += 1
 
 for ret in ExampleGen(FLAGS.data_path, num_epochs=1) :
+  print type(ret)
   print ret
   ret_json = json_format.MessageToJson(ret)
   print ret_json
