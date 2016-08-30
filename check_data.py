@@ -17,7 +17,7 @@ tf.app.flags.DEFINE_string('data_path', 'data/data', 'Path expression to tf.Exam
 tf.app.flags.DEFINE_string('crc', '0', 'crc size')
 FLAGS.crc = int(FLAGS.crc)
 
-def ExampleGen(recordio_path, num_epochs=None):
+def ExampleGen(recordio_path, crc=0, num_epochs=None):
   """Generates tf.Examples from path of recordio files.
 
   Args:
@@ -40,15 +40,15 @@ def ExampleGen(recordio_path, num_epochs=None):
       reader = open(f, 'rb')
       while True:
         len_bytes = reader.read(8)
-        skip_bytes = reader.read(FLAGS.crc) # skip crc bytes
+        skip_bytes = reader.read(crc) # skip crc bytes
         if not len_bytes: break
         str_len = struct.unpack('q', len_bytes)[0]
         example_str = struct.unpack('%ds' % str_len, reader.read(str_len))[0]
-        skip_bytes = reader.read(FLAGS.crc) # skip crc bytes
+        skip_bytes = reader.read(crc) # skip crc bytes
         yield example_pb2.Example.FromString(example_str)
     epoch += 1
 
-for ret in ExampleGen(FLAGS.data_path, num_epochs=1) :
+for ret in ExampleGen(FLAGS.data_path, FLAGS.crc, num_epochs=1) :
   print type(ret)
   print ret
   json_string = json_format.MessageToJson(ret)
