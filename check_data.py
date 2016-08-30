@@ -2,13 +2,15 @@
 
 import sys
 import os
+
 import glob
 import random
 import struct
 import tensorflow as tf
 from tensorflow.core.example import example_pb2
-import json
+
 from google.protobuf import json_format
+import json
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('data_path', 'data/data', 'Path expression to tf.Example.')
@@ -44,11 +46,15 @@ def ExampleGen(recordio_path, num_epochs=None):
         example_str = struct.unpack('%ds' % str_len, reader.read(str_len))[0]
         skip_bytes = reader.read(FLAGS.crc) # skip crc bytes
         yield example_pb2.Example.FromString(example_str)
-
     epoch += 1
 
 for ret in ExampleGen(FLAGS.data_path, num_epochs=1) :
   print type(ret)
   print ret
-  ret_json = json_format.MessageToJson(ret)
-  print ret_json
+  json_string = json_format.MessageToJson(ret)
+  print json_string
+  '''
+  json_obj = json.loads(json_string)
+  json_string = json.dumps(json_obj)
+  print json_string
+  '''
