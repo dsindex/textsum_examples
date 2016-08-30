@@ -37,6 +37,10 @@ def ExampleGen(recordio_path, crc=0, num_epochs=None):
     assert filelist, 'Empty filelist.'
     random.shuffle(filelist)
     for f in filelist:
+      '''
+      for example_str in tf.python_io.tf_record_iterator(f):
+        yield example_pb2.Example.FromString(example_str)
+      '''
       reader = open(f, 'rb')
       while True:
         len_bytes = reader.read(8)
