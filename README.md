@@ -48,6 +48,7 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
       }
     }
   }
+  ...
   ```
   - `ExampleGen()` is used in batch_reader.py
   ```python
@@ -57,8 +58,29 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   ```shell
   $ python generate_data.py --input_dir=sample --data_path=sample-0
   $ python check_data.py --data_path=sample-0 --crc=4
-  # refer to http://stackoverflow.com/questions/39176529/tensorflow-textsum-model-how-to-create-my-own-training-data
-  #          https://github.com/tensorflow/models/issues/357 
+  <class 'tensorflow.core.example.example_pb2.Example'>
+  features {
+    feature {
+      key: "abstract"
+      value {
+        bytes_list {
+          value: "<d> <p> <s> hello tensorflow </s> </p> </d>"
+        }
+      }
+    }
+    feature {
+      key: "article"
+      value {
+        bytes_list {
+          value: "<d> <p> <s> this is a sample file </s> </p> </d>"
+        }
+      }
+    }
+  }
+
+  article   \t  <d> <p> <s> this is a sample file </s> </p> </d>
+  abstract  \t  <d> <p> <s> hello tensorflow </s> </p> </d>
+  ...
   ```
 
 - test

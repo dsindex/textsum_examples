@@ -52,8 +52,8 @@ for i, file in enumerate(files):
             continue
         try : key, val = line.split('\t',1)
         except : continue
-        #key = DOCUMENT_START + ' ' + PARAGRAPH_START + ' ' + SENTENCE_START + ' ' + key + ' ' + SENTENCE_END + ' ' + PARAGRAPH_END + ' ' + DOCUMENT_END
-        #val = DOCUMENT_START + ' ' + PARAGRAPH_START + ' ' + SENTENCE_START + ' ' + val + ' ' + SENTENCE_END + ' ' + PARAGRAPH_END + ' ' + DOCUMENT_END
+        key = DOCUMENT_START + ' ' + PARAGRAPH_START + ' ' + SENTENCE_START + ' ' + key + ' ' + SENTENCE_END + ' ' + PARAGRAPH_END + ' ' + DOCUMENT_END
+        val = DOCUMENT_START + ' ' + PARAGRAPH_START + ' ' + SENTENCE_START + ' ' + val + ' ' + SENTENCE_END + ' ' + PARAGRAPH_END + ' ' + DOCUMENT_END
         example = tf.train.Example(
             features = tf.train.Features(
                 feature = {

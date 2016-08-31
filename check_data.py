@@ -11,6 +11,7 @@ from tensorflow.core.example import example_pb2
 
 from google.protobuf import json_format
 import json
+import base64
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('data_path', 'data/data', 'Path expression to tf.Example.')
@@ -56,9 +57,12 @@ for ret in ExampleGen(FLAGS.data_path, FLAGS.crc, num_epochs=1) :
   print type(ret)
   print ret
   json_string = json_format.MessageToJson(ret)
-  print json_string
-  '''
   json_obj = json.loads(json_string)
-  json_string = json.dumps(json_obj)
-  print json_string
-  '''
+  feature = json_obj['features']['feature']
+  for key, val in feature.iteritems() :
+    print key + '\t',
+    bytesList = val['bytesList']
+    for v in bytesList['value'] :
+      print base64.b64decode(v),
+    print '\n',
+  print '\n',
