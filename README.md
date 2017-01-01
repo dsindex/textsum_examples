@@ -50,10 +50,6 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   }
   ...
   ```
-  - `ExampleGen()` is used in batch_reader.py
-  ```python
-  input_gen = self._TextGenerator(data.ExampleGen(self._data_path))
-  ```
   - how to create own training data?
   ```shell
   $ python generate_data.py --input_dir=sample --data_path=sample-0
@@ -89,7 +85,7 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   $ python data_convert_example.py --command binary_to_text --in_file data/binary_data --out_file data/text_data2
   $ diff data/text_data2 data/text_data
   
-  * your text_data format looks like 
+  # your text_data format looks like 
   
   abstract=hello world    article=this is a test file
   abstract=...            article=....
@@ -103,5 +99,16 @@ $ ./test.sh -v -v
 running_avg_loss: 1.002997
 running_avg_loss: 1.384698
 running_avg_loss: 0.865053
+...
+```
+
+- gpu setting tips
+```
+# if you want to prevent full gpu-memory allocation, set allow_growth option to 
+# `seq2seq_attention.py`, `seq2seq_attention_decode.py`
+
+device_config=tf.ConfigProto(allow_soft_placement=True)
+device_config.gpu_options.allow_growth = True
+sess = tf.Session(config=device_config)
 ...
 ```
