@@ -82,6 +82,19 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   abstract  \t  <d> <p> <s> hello tensorflow </s> </p> </d>
   ...
   ```
+  - recent version of textsum provides `data_convert_example.py`
+  ```
+  $ python data_convert_example.py --command binary_to_text --in_file data/data --out_file data/text_data
+  $ python data_convert_example.py --command text_to_binary --in_file data/text_data --out_file data/binary_data
+  $ python data_convert_example.py --command binary_to_text --in_file data/binary_data --out_file data/text_data2
+  $ diff data/text_data2 data/text_data
+  
+  * your text_data format looks like 
+  
+  abstract=hello world    article=this is a test file
+  abstract=...            article=....
+  ...
+  ```
 
 - test
 ```shell
