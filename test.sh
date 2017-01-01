@@ -121,8 +121,7 @@ function train {
 	  --data_path=data/training-* \
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
-	  --train_dir=textsum/log_root/train \
-	  --max_run_steps=10
+	  --train_dir=textsum/log_root/train
 }
 
 # evaluation
@@ -134,8 +133,7 @@ function evaluate {
 	  --data_path=data/validation-* \
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
-	  --eval_dir=textsum/log_root/eval \
-	  --max_run_steps=1
+	  --eval_dir=textsum/log_root/eval
 }
 
 # decode
@@ -148,8 +146,7 @@ function decode {
 	  --vocab_path=data/vocab \
 	  --log_root=textsum/log_root \
 	  --decode_dir=textsum/log_root/decode \
-	  --beam_size=8 \
-	  --max_run_steps=1
+	  --beam_size=8
 }
 
 train
