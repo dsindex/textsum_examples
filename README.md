@@ -13,7 +13,7 @@
 
 - data format
   - how does data file look like?
-  ```shell
+  ```
   # you need to install google protobuf(http://dchua.com/2016/04/08/installing-grpc,-protobuf-and-its-dependencies-for-python-development/)
   $ python check_data.py --data_path=data/data
 
@@ -51,7 +51,7 @@ as the biggest ever drive to take the tiger town of jaffna . . </s> </p> </d>"
   ...
   ```
   - how to create own training data?
-  ```shell
+  ```
   $ python generate_data.py --input_dir=sample --data_path=sample-0
   $ python check_data.py --data_path=sample-0 --crc=4
   <class 'tensorflow.core.example.example_pb2.Example'>
